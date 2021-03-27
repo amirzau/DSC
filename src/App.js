@@ -1,23 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import  DegreeFilterCard  from "./components/DegreeFilterCard";
+import  CoursesFilterCard  from "./components/CoursesFilterCard";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { useState } from 'react'
 
 function App() {
+  const data = [
+    {
+      name: 'Computer Science',
+      id: 1,
+      isPicked: false,
+      courses:['Intro To CS', 'Data Structures', 'Design Of Algorithms']
+    },
+    {
+      name: 'Psychology',
+      id: 2,
+      isPicked: false,
+      courses:['Statistics', 'Behavioral Psychology', 'Regression']
+    },
+    {
+      name: 'Physics',
+      id: 3,
+      isPicked: false,
+      courses:['Quantum Mechanics', 'Electricity', 'General Relativity']
+    },
+    {
+      name: 'Biology',
+      id: 4,
+      isPicked: false,
+      courses:['The Cell', 'Biochemistry', 'Organic Chemistry']
+    },
+  ]
+
+
+  const [coursesToShow, setCoursesToShow] = useState([])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <DegreeFilterCard 
+      data={data} 
+      handlePick={(courses) => setCoursesToShow(courses)}
+      />
+      <CoursesFilterCard courses={coursesToShow} />
     </div>
   );
 }
